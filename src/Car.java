@@ -1,6 +1,8 @@
 //주유량
 //현재속도
 
+import java.util.Random;
+
 public class Car {
     private int maxPassenger; //최대인원                 //<필드값 영역!>
     private int nowPassenger;  //현재인원
@@ -21,6 +23,10 @@ public class Car {
     private String number; //택시번호
 
 
+
+
+
+
     ///버스
     public Car(int maxPassenger, int nowPassenger, int charge, int Num, int oil, int nowVelocity, status status,int passengerRideOn) {
         this.maxPassenger = maxPassenger;
@@ -34,7 +40,7 @@ public class Car {
 
     }
     //택시
-    public Car(int charge, String number, int oil, int nowVelocity, status status, int passengerRideOn, String destination, int basicDistance, int destinationDistance, int minimumFare, int chargeForDistance) {
+    public Car( String number, int oil, int nowVelocity, status status, int passengerRideOn, String destination, int basicDistance, int destinationDistance, int minimumFare, int chargeForDistance) {
         this.charge = charge;
         this.number = number;
         this.oil = oil;
@@ -47,6 +53,7 @@ public class Car {
         this.minimumFare = minimumFare;
         this.chargeForDistance = chargeForDistance;
     }
+
 
     public String getNumber() {
         return number;

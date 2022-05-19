@@ -1,11 +1,8 @@
 
 public class Taxi extends Car {
-    public Taxi(int charge, String number , int oil, int nowVelocity, status status, int passengerRideOn,
-                String destination, int basicDistance, int destinationDistance, int minimumFare, int chargeForDistance)
-    {super(charge, number, oil, nowVelocity, status, passengerRideOn, destination,
-            basicDistance, destinationDistance, minimumFare, chargeForDistance);}
-
-
+    public Taxi(String number, int oil, int nowVelocity, status status, int passengerRideOn, String destination, int basicDistance, int destinationDistance, int minimumFare, int chargeForDistance) {
+        super(number, oil, nowVelocity, status, passengerRideOn, destination, basicDistance, destinationDistance, minimumFare, chargeForDistance);
+    }
 
     //<운행>
     public status operation() {
@@ -26,13 +23,22 @@ public class Taxi extends Car {
     //<승객탑승>
     public void ride (int on) {
         if (getNowPassenger()==0) {     //'일반'일때만
-            if (on>1) { //1명이상 탑승할경우
+            if (on>4) { //4명이상 탑승할경우
                 setNowPassenger(getNowPassenger()+on);
                 setStatus(status.START); //운행중으로 전환
-                System.out.println("탑승중");
+                System.out.println("최대인원초과");
             }
-        }else setStatus(status.STOP); // 승객이 1명이상 탑승인 경우 탑승불가로 상태변경
-        System.out.println("탑승불가합니다");
+        }
+    }
+
+    //<목적지>
+    public void destination(String Destination){
+        setDestination(Destination);
+    }
+
+    //<목적지까지거리>
+    public void distance(int Distance){
+        setDestinationDistance(Distance);
     }
 
     //<속도변경>
@@ -50,6 +56,11 @@ public class Taxi extends Car {
 
     }
 
+    //주유량변경
+    public void fuel ( int oil){
+        setOil(getOil() + oil);
+    }
+
     //결제요금
     public void totalCharge(){
         if(getBasicDistance()<getDestinationDistance()){ //기본거리보다 목적지거리보다 멀 경우
@@ -61,7 +72,7 @@ public class Taxi extends Car {
             setCharge(getMinimumFare()); //목적지가 기본거리랑 같을경우 = 기본요금
     }
     public void showInfo(){
-        System.out.println(this.getNumber()+" 택시 목적지는 "+ this.getDestination() +"이다");
+        System.out.println(this.getNumber()+" 택시 목적지는 "+ this.getDestination() +"이고 목적지 까지 거리는"+getDestinationDistance()+" 이다");
         System.out.println("현재 "+this.getNumber()+" 택시는 "+this.getStatus()+" 상태 이고 연료량은 "+this.getOil()+" 현재 속력은 "+this.getNowVelocity()+" 이다 ");
     }
 }
